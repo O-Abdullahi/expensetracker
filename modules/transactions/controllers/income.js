@@ -9,7 +9,7 @@ const income = async (req, res) => {
   const getUser = await usersModel.findOne({ _id: req.user.id });
   //console.log(getUser);
   const { amount, remarks } = req.body;
-  const message = `Hello ${req.user.name}, ${amount} naira has been added to your balance`;
+
   const subject = "Credit Transaction Alert";
   if (!amount) throw "Amount is Required";
   if (amount < 0) throw "Amount can not be negative";
@@ -27,6 +27,8 @@ const income = async (req, res) => {
     current_balance: newBalance,
     transaction_type: "income",
   });
+
+  const message = `Hello ${req.user.name}, ${amount} naira has been added to your balance.\n\n Details:\n\n Amount Added: ${amount}\n Previous Balance: ${updatedTx.previous_balance}\n Current Balance: ${updatedTx.current_balance}\n Cheers!`;
   //console.log(newTx);
   await usersModel.updateOne(
     {

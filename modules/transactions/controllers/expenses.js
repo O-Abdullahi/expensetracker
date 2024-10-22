@@ -49,8 +49,7 @@ const expense = async (req, res) => {
   );
 
   const subject = "Debit Transaction Alert";
-  const msg = `Hello ${getUser.name}, kindly find the details of the transaction below:\n Amount: 
-${newTx.amount}\n Previous Balance: ${newTx.previous_balance}\n Current Balance: ${newTx.current_balance}\n Transactiion Type: ${newTx.transaction_type}\n`;
+  const msg = `Hello ${getUser.name}, kindly find the details of the transaction below:\n Amount: ${newTx.amount}\n Previous Balance: ${newTx.previous_balance}\n Current Balance: ${newTx.current_balance}\n Transaction Type: ${newTx.transaction_type}\n`;
 
   mailManager(getUser.email, msg, subject);
 
